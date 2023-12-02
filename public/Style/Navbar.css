@@ -1,0 +1,45 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+
+.navbar{
+    background-color: #C10000;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+}
+
+.navbar .left img{
+    width: 180px;
+}
+
+.navbar .right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    margin-right: 50px;
+    margin-left: 20px;
+    font-size: 24px;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.navbar .right a{
+    text-decoration: none;
+    color: white;
+}
+
+.navbar .right a:hover{
+    transform: scale(1.1);
+    transition: .15s;
+}
+
+.navbar .right a:active{
+    opacity: .6;
+    transition: .2s;
+}
