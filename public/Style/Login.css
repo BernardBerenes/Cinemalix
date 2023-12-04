@@ -1,6 +1,14 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
 main{
-    height: 100vh;
-    width: 100vw;
+    padding: 20px;
+    padding-top: 80px;
+    min-height: 100vh;
+    min-width: 100vw;
     background-color: #1E1E1E;
     display: flex;
     justify-content: center;
@@ -16,40 +24,26 @@ main{
     padding: 30px;
     border: 2px solid white;
     border-radius: 20px;
-    width: 800px;
+    width: 425px;
 }
 
 .container .top{
     padding-bottom: 20px;
     text-align: center;
     font-size: 40px;
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'Ubuntu';
 }
 
 .container .middle{
     display: flex;
-    justify-content: space-between;
-    padding-left: 10px;
-}
-
-.container .middle .middleLeft{
-    display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 45%;
 }
 
-.container .middle .middleRight{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 40%;
-}
-
-.container .middle .middleRight .inputDOB input{
-    font-size: 12px;
-    font-family: 'Work Sans', sans-serif;
-    padding: 5px;
+.container a:hover{
+    cursor: pointer;
+    opacity: .7;
+    transition: .15s;
 }
 
 .container .middle .input{
@@ -57,7 +51,12 @@ main{
     font-family: 'Work Sans', sans-serif;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
+}
+
+.container .middle .input .errorMessage{
+    color: #C10000;
+    font-weight: bold;
 }
 
 .container .middle .input .inputBox{
@@ -66,13 +65,14 @@ main{
     border: 4px solid #C10000;
     padding: 10px;
     border-radius: 8px;
+    height: 50px;
 }
 
 .container .middle .input .inputBox input{
     background: transparent;
     border: none;
     color: white;
-    width: 85%;
+    width: 100%;
     outline: none;
 }
 
@@ -93,7 +93,7 @@ main{
 }
 
 .container .bottom{
-    padding-top: 40px;
+    padding-top: 20px;
     padding-bottom: 10px;
     font-size: 16px;
     font-family: 'Work Sans', sans-serif;
@@ -106,17 +106,6 @@ main{
 .container .bottom a{
     color: red;
     font-weight: bold;
-}
-
-.container .bottom a:hover{
-    opacity: .7;
-    transition: .15s;
-    cursor: pointer;
-}
-
-.container .bottom a:active{
-    opacity: .6;
-    transition: .1s;
 }
 
 .container .bottom button{
@@ -138,8 +127,4 @@ main{
 .container .bottom button:active{
     opacity: .6;
     transition: .1s;
-}
-
-.errorMessage {
-    color: red;
 }
