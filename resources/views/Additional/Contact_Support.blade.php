@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
+    <title>Contact Support</title>
     <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Style/Contact_Support.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
@@ -15,18 +15,39 @@
         <div class="left">
             <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
         </div>
-        @auth
-            <form action="{{ route('logout') }}" method="POST" class="right">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
-        @else
-            <div class="right">
-                <a href="{{ route('loginView') }}">
-                    <div id="loginButton">Login</div>
-                </a>
-            </div>
-        @endauth
+        <div class="right">
+            <ul>
+                <div class="rightLeft">
+                    <li><a href="">Film</a></li>
+                </div>
+            </ul>
+            <ul>
+                <form method="POST" action="{{ route('logout') }}" class="rightRight">
+                    @csrf
+                    @can('isAdmin')
+                        <li>
+                            <a href="#">Admin ↓</a>
+                            <ul class="dropdown">
+                                <li><button type="submit">Log Out</button></li>
+                            </ul>
+                        </li>
+                    @else
+                        @auth
+                            <li>
+                                <a href="#">User ↓</a>
+                                <ul class="dropdown">
+                                    <li><button type="submit">Log Out</button></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('loginView') }}">Login</a>
+                            </li>
+                        @endauth
+                    @endcan
+                </form>
+            </ul>
+        </div>
     </nav>
     <main>
         <div class="container">

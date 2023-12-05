@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +24,14 @@ Route::get('/support', function() {
     return view('Additional.Contact_Support');
 })->name('contactSupport');
 
+Route::get('/film/create', [FilmController::class, 'createFilmView'])->name('createFilmView');
+Route::post('/film/create', [FilmController::class, 'createFilm'])->name('createFilm');
+
+Route::get('/genre', [GenreController::class, 'showGenreView'])->name('showGenreView');
+Route::get('/genre/create', [GenreController::class, 'createGenreView'])->name('createGenreView');
+Route::post('/genre/create', [GenreController::class, 'createGenre'])->name('createGenre');
+
 Route::middleware('admin')->group(function() {
-    Route::get('/film/create', [FilmController::class, 'createFilmView'])->name('createFilmView');
-    Route::post('/film/create', [FilmController::class, 'createFilm'])->name('createFilm');
 });
 
 Route::middleware('guest')->group(function() {
@@ -34,6 +40,9 @@ Route::middleware('guest')->group(function() {
     
     Route::get('/login', [AuthController::class, 'loginView'])->name('loginView');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+    Route::get('/forgot-password', [AuthController::class, 'forgotPasswordView'])->name('forgotPasswordView');
+    Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth', 'verified']);

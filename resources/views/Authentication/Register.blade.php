@@ -17,9 +17,18 @@
             <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
         </div>
         <div class="right">
-            <a href="{{ route('loginView') }}">
-                <div id="loginButton">Login</div>
-            </a>
+            <ul>
+                <div class="rightLeft">
+                    <li><a href="">Film</a></li>
+                </div>
+            </ul>
+            <ul>
+                <div class="rightRight">
+                    <li>
+                        <a href="{{ route('loginView') }}">Login</a>
+                    </li>
+                </div>
+            </ul>
         </div>
     </nav>
     <main>

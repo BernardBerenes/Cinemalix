@@ -12,13 +12,12 @@ class Film extends Model
         'FilmName',
         'FilmSynopsis',
         'FilmDuration',
-        'FilmDate',
+        'FilmReleaseDate',
         'FilmAgeRestriction',
-        'FilmRating',
-        'FilmTrailer',
         'FilmDirector',
+        'FilmPoster',
         'FilmSubtitle',
-        'FilmType',
+        'FilmTrailer',
         'GenreID'
     ];
 

@@ -60,4 +60,28 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect(route('loginView'));
     }
+
+    public function forgotPasswordView() { 
+        return view('Authentication.Forgot_Password');
+    }
+
+    public function forgotPassword(Request $request) {
+        $users = User::all();
+        foreach ($users as $user) {
+            if($user->email == $request->email){
+                return redirect(route('contactSupport'));
+            }
+        }
+        return back()->withErrors([
+            'email' => 'There is no email named '.$request->email
+        ]);
+    }
+
+    public function reenterCodeView() {
+        return view('Authentication.Reenter_Code');
+    }
+
+    public function reenterCode() {
+        
+    }
 }
