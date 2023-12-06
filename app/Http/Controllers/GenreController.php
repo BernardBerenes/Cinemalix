@@ -13,10 +13,6 @@ class GenreController extends Controller
         return view('Genre.View_Genre')->with('genre', $genres);
     }
 
-    public function createGenreView() {
-        return view('Genre.Create_Genre');
-    }
-
     public function createGenre(Request $request) {
         $request->validate([
             'GenreName' => 'required|min:4|max:20'
@@ -26,6 +22,19 @@ class GenreController extends Controller
             'GenreName' => $request->GenreName,
         ]);
 
+        return redirect(route('showGenreView'));
+    }
+
+    public function editGenre(Request $request, $id){
+        Genre::findOrFail($id)->update([
+            'GenreName' => $request->GenreName,
+        ]);
+
+        return redirect(route('showGenreView'));
+    }
+
+    public function deleteGenre($id) {
+        Genre::destroy($id);
         return redirect(route('showGenreView'));
     }
 }

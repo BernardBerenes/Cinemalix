@@ -46,7 +46,7 @@ class AuthController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
 
-            return redirect(route('contactSupport'));
+            return redirect(route('dashboard'));
         }
 
         return back()->withErrors([
@@ -69,7 +69,7 @@ class AuthController extends Controller
         $users = User::all();
         foreach ($users as $user) {
             if($user->email == $request->email){
-                return redirect(route('contactSupport'));
+                return redirect(route('newPasswordView', ['id'=>$user->id]));
             }
         }
         return back()->withErrors([
@@ -77,11 +77,27 @@ class AuthController extends Controller
         ]);
     }
 
-    public function reenterCodeView() {
-        return view('Authentication.Reenter_Code');
+    // public function reenterCodeView() {
+    //     $random = rand() % 100000;
+    //     return view('Authentication.Reenter_Code')->with('rand', $random);
+    // }
+
+    // public function reenterCode($rand, Request $request) {
+    //     if($request->randomNumber == $rand){
+    //         return redirect(route('newPasswordView', ['id'=>1]));
+    //     }
+    //     return back();
+    // }
+    
+    public function newPasswordView($id) {
+        return view('Authentication.New_Password')->with('id', $id);
     }
 
-    public function reenterCode() {
-        
+    public function newPassword($id, Request $request) {
+        $users = User::findOrFail($id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect(route('loginView'));
     }
 }

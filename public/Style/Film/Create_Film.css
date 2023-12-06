@@ -63,7 +63,7 @@ main{
     font-size: 12px;
     font-family: 'Work Sans', sans-serif;
     padding: 5px;
-    background-color: #1c1c1c;
+    background-color: transparent;
     color: white;
     border: 2px solid red;
     outline: none;
@@ -107,10 +107,14 @@ textarea{
     background: none;
     font-family: 'Work Sans', sans-serif;
     padding: 10px;
-    color: #61646b;
+    color: white;
     font-size: 16px;
     border: 4px solid #C10000;
     border-radius: 8px;
+}
+
+textarea:focus{
+    outline: none;
 }
 
 .container .middle .input .inputBox img:hover{
@@ -122,6 +126,25 @@ textarea{
 .container .middle .input .inputBox img:active{
     opacity: .5;
     transition: .1s;
+}
+
+.inputSelect{
+    border-radius: 4px;
+    width: 100%;
+    border-color: transparent;
+    background-color: transparent;
+    color: white;
+}
+
+.inputSelect option{
+    height: 100px;
+    background-color: #C10000;
+    border: none;
+    outline: none;
+}
+
+.inputSelect:focus{
+    outline: none;
 }
 
 .container .middle a{
@@ -178,17 +201,16 @@ textarea{
 }
 
 #uploadFile{
-    opacity: 0;
-    z-index: -1;
-}
-
-label{
+    width: 100%;
     cursor: pointer;
     background-color: red;
-    padding: 5px 15px;
 }
 
-label:hover{
+#uploadFile:hover{
     opacity: .6;
     transition: .15s;
+}
+
+.errorMessage{
+    color: red;
 }

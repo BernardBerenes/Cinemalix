@@ -36,6 +36,10 @@ body{
     font-family: 'Work Sans', sans-serif;
 }
 
+.navbar .right .rightLeft{
+    display: flex;
+}
+
 .navbar .right a{
     text-decoration: none;
     color: white;
