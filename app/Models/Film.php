@@ -15,8 +15,10 @@ class Film extends Model
         'FilmReleaseDate',
         'FilmAgeRestriction',
         'FilmDirector',
-        'FilmPoster',
+        'FilmRating',
+        'FilmLanguage',
         'FilmSubtitle',
+        'FilmPoster',
         'FilmTrailer',
         'GenreID'
     ];

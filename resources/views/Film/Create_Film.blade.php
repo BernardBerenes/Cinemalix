@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinemalix Register</title>
+    <title>Cinemalix Create Film</title>
     <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Style/Film/Create_Film.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
@@ -54,7 +54,7 @@
             <div class="top">
                 Upload Film
             </div>
-
+            
             <form method="POST" action="{{ route('createFilm') }}" id="registerForm" enctype="multipart/form-data">
                 @csrf
                 <div class="middle">
@@ -71,9 +71,9 @@
                             </div>
                             <div class="input">
                                 <div class="inputText">Synopsis</div>
-                                <textarea cols="50" rows="10" name="FilmSynopsis" placeholder="Terlatar tahun 1793, di masa era Revolusi Prancis terjadi. Napoleon akan berkisah tentang Jenderal Napoleon "></textarea>
+                                <textarea cols="50" rows="10" name="FilmSynopsis" placeholder="Terlatar tahun 1793, di masa era Revolusi Prancis terjadi. Napoleon akan berkisah tentang Jenderal Napoleon"></textarea>
                                 @error('FilmSynopsis')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input">
@@ -87,7 +87,7 @@
                                     </select>
                                 </div>
                                 @error('Genre')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input">
@@ -97,7 +97,7 @@
                                     minutes
                                 </div>
                                 @error('FilmDuration')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input">
@@ -106,7 +106,7 @@
                                     <input type="date" id="filmReleaseDate" name="FilmReleaseDate">
                                 </div>
                                 @error('FilmReleaseDate')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input">
@@ -115,7 +115,7 @@
                                     <input type="text" placeholder="R 17+" id="filmRatingInput" name="FilmAgeRestriction">
                                 </div>
                                 @error('FilmAgeRestriction')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input">
@@ -124,12 +124,39 @@
                                     <input type="text" placeholder="Ridley Scott" id="filmDirectorInput" name="FilmDirector">
                                 </div>
                                 @error('FilmDirector')
-                                    <div class="errorMessage"></div>
+                                    <div class="errorMessage">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="input">
+                                <div class="inputText">Film Rating</div>
+                                <div class="inputBox">
+                                    <input type="number" placeholder="9.8" step="0.01" name="FilmRating">
+                                </div>
+                                @error('FilmDuration')
+                                    <div class="errorMessage">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                     </div>
                     <div class="middleRight">
+                        <div class="input">
+                            <div class="inputText">Film Subtitle</div>
+                            <div class="inputBox">
+                                <input type="text" placeholder="English" name="FilmLanguage">
+                            </div>
+                            @error('FilmLanguage')
+                                <div class="errorMessage">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="input">
+                            <div class="inputText">Film Subtitle</div>
+                            <div class="inputBox">
+                                <input type="text" placeholder="Indonesia" name="FilmSubtitle">
+                            </div>
+                            @error('FilmSubtitle')
+                                <div class="errorMessage">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="input">
                             <div class="inputText">Film Poster</div>
                             <div class="inputBox">
@@ -145,15 +172,6 @@
                                 <input type="file" id="uploadFile" name="FilmTrailer">
                             </div>
                             @error('FilmTrailer')
-                                <div class="errorMessage">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="input">
-                            <div class="inputText">Film Subtitle</div>
-                            <div class="inputBox">
-                                <input type="file" id="uploadFile" name="FilmSubtitle">
-                            </div>
-                            @error('FilmSubtitle')
                                 <div class="errorMessage">{{ $message }}</div>
                             @enderror
                         </div>

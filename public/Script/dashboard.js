@@ -52,11 +52,3 @@ document.addEventListener('DOMContentLoaded', function() {
         plusSlides(1);
     });
 });
-
-const ViewDetailElements = document.querySelectorAll(".view-film");
-
-ViewDetailElements.forEach(function(element) {
-    element.onclick = function() {
-    window.location.href = '/ViewFilm/ViewDetailFilm';
-    };
-});

@@ -26,6 +26,13 @@ Route::get('/support', function() {
     return view('Additional.Contact_Support');
 })->name('contactSupport');
 
+Route::get('/cek', function() {
+    return view('Film.View_Film');
+});
+
+Route::get('/view-film', [FilmController::class, 'showFilmView'])->name('showFilmView');
+Route::get('/detail-film/{id}', [FilmController::class, 'detailFilmView'])->name('detailFilmView');
+
 Route::middleware('admin')->group(function() {
     Route::get('/film/create', [FilmController::class, 'createFilmView'])->name('createFilmView');
     Route::post('/film/create', [FilmController::class, 'createFilm'])->name('createFilm');

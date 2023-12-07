@@ -16,13 +16,15 @@ return new class extends Migration
         Schema::create('films', function (Blueprint $table) {
             $table->id();
             $table->string('FilmName');
-            $table->string('FilmSynopsis');
+            $table->longText('FilmSynopsis');
             $table->integer('FilmDuration');
             $table->date('FilmReleaseDate');
             $table->string('FilmAgeRestriction');
             $table->string('FilmDirector');
-            $table->string('FilmPoster');
+            $table->float('FilmRating');
+            $table->string('FilmLanguage');
             $table->string('FilmSubtitle');
+            $table->string('FilmPoster');
             $table->string('FilmTrailer');
             $table->unsignedBigInteger('GenreID');
             $table->foreign('GenreID')->references('id')->on('genres')->onUpdate('cascade')->onDelete('cascade');

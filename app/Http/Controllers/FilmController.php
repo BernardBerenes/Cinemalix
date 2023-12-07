@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 class FilmController extends Controller
 {
     public function showFilmView() {
-        return view();
+        $films = Film::all();
+
+        return view('Film.View_Film_All');
     }
 
     public function createFilmView() {
@@ -21,9 +23,17 @@ class FilmController extends Controller
     public function createFilm(Request $request) {
         $request->validate([
             'FilmName' => 'required|unique:films,FilmName',
+            'FilmSynopsis' => 'required|min:40|max:1000',
+            'Genre' => 'required',
+            'FilmDuration' => 'required',
+            'FilmReleaseDate' => 'required',
+            'FilmAgeRestriction' => 'required',
+            'FilmDirector' => 'required',
+            'FilmRating' => 'required',
+            'FilmLanguage' => 'required',
+            'FilmSubtitle' => 'required',
             'FilmPoster' => 'required|file',
-            'FilmTrailer' => 'required|file',
-            'FilmSubtitle' => 'required|file'
+            'FilmTrailer' => 'required|file'
         ]);
         $extension = $request->file('FilmPoster')->getClientOriginalExtension();
         $FilmPoster = $request->FilmName.'.'.$extension;
@@ -33,11 +43,6 @@ class FilmController extends Controller
         $FilmTrailer = $request->FilmName.'.'.$extension;
         $request->file('FilmTrailer')->storeAs('/public/Trailer/', $FilmTrailer);
 
-        $extension = $request->file('FilmSubtitle')->getClientOriginalExtension();
-        $FilmSubtitle = $request->FilmName.'.'.$extension;
-        $request->file('FilmSubtitle')->storeAs('/public/Subtitle/', $FilmSubtitle);
-
-
         Film::create([
             'FilmName' => $request->FilmName,
             'FilmSynopsis' => $request->FilmSynopsis,
@@ -45,12 +50,21 @@ class FilmController extends Controller
             'FilmReleaseDate' => $request->FilmReleaseDate,
             'FilmAgeRestriction' => $request->FilmAgeRestriction,
             'FilmDirector' => $request->FilmDirector,
+            'FilmRating' => $request->FilmRating,
+            'FilmLanguage' => $request->FilmLanguage,
+            'FilmSubtitle' => $request->FilmSubtitle,
             'FilmPoster' => $FilmPoster,
-            'FilmSubtitle' => $FilmSubtitle,
             'FilmTrailer' => $FilmTrailer,
-            'GenreID' => $request->Genre,
+            'GenreID' => $request->Genre
         ]);
 
         return redirect(route('dashboard'));
+    }
+
+    public function detailFilmView($id) {
+        $films = Film::findOrFail($id);
+        $genres = Genre::findOrFail($films->GenreID);
+
+        return view('Film.View_Detail_Film')->with('film', $films)->with('genre', $genres);
     }
 }

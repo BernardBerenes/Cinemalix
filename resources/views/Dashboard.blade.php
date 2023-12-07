@@ -35,15 +35,15 @@
             <div class="carousel-mid">
                 <div class="slideshow-container">
                     <div class="mySlides fade">
-                        <img src="{{ asset('./storage/Poster/Poster.png') }}" style="width:100%">
+                        <img src="{{ asset('Asset/Poster_1.png') }}" style="width:100%">
                     </div>
 
                     <div class="mySlides fade">
-                        <img src="{{ asset('./storage/Poster/Poster_1.png') }}" style="width:100%">
+                        <img src="{{ asset('Asset/Poster_2.png') }}" style="width:100%">
                     </div>
 
                     <div class="mySlides fade">
-                        <img src="{{ asset('./storage/Poster/Poster_2.png') }}" style="width:100%">
+                        <img src="{{ asset('Asset/Poster_3.png') }}" style="width:100%">
                     </div>
                     <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                     <a class="next" onclick="plusSlides(1)">&#10095;</a>
@@ -69,17 +69,17 @@
                 @endphp
                 @foreach ($film as $i)    
                     @if ($iter <= 3) 
-                        <div class="cards">
+                        <a href="{{ route('detailFilmView', ['id'=>$i->id]) }}" class="cards">
                             <div class="movie-card view-film">
                                 <div class="movie-header">
-                                    <img src="{{ asset('./storage/Poster/Napoleon.jpg') }}" />
+                                    <img src="{{ asset('./storage/Poster/'.$i->FilmPoster) }}" />
                                 </div>
                                 <div class="movie-content">
-                                    <h3>R 17+</h3>
-                                    <h3><i class="bi bi-star-fill"></i> 9.6</h3>
+                                    <h3>{{ $i->FilmAgeRestriction }}</h3>
+                                    <h3><i class="bi bi-star-fill"></i>{{ $i->FilmRating }}</h3>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endif
                     @php
                         $iter++
@@ -101,17 +101,17 @@
                 @endphp
                 @foreach ($film as $i)    
                     @if ($iter <= 3) 
-                        <div class="cards">
+                        <a href="{{ route('detailFilmView', ['id'=>$i->id]) }}" class="cards">
                             <div class="movie-card view-film">
                                 <div class="movie-header">
-                                    <img src="{{ asset('./storage/Poster/Napoleon.jpg') }}" />
+                                    <img src="{{ asset('./storage/Poster/'.$i->FilmPoster) }}" />
                                 </div>
                                 <div class="movie-content">
-                                    <h3>R 17+</h3>
-                                    <h3><i class="bi bi-star-fill"></i> 9.6</h3>
+                                    <h3>{{ $i->FilmAgeRestriction }}</h3>
+                                    <h3><i class="bi bi-star-fill"></i>{{ $i->FilmRating }}</h3>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endif
                     @php
                         $iter++
@@ -134,17 +134,17 @@
                 @endphp
                 @foreach ($film as $i)    
                     @if ($iter <= 3) 
-                        <div class="cards">
+                        <a href="{{ route('detailFilmView', ['id'=>$i->id]) }}" class="cards">
                             <div class="movie-card view-film">
                                 <div class="movie-header">
-                                    <img src="{{ asset('./storage/Poster/Napoleon.jpg') }}" />
+                                    <img src="{{ asset('./storage/Poster/'.$i->FilmPoster) }}" />
                                 </div>
                                 <div class="movie-content">
-                                    <h3>R 17+</h3>
-                                    <h3><i class="bi bi-star-fill"></i> 9.6</h3>
+                                    <h3>{{ $i->FilmAgeRestriction }}</h3>
+                                    <h3><i class="bi bi-star-fill"></i>{{ $i->FilmRating }}</h3>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     @endif
                     @php
                         $iter++
