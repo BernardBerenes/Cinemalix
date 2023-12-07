@@ -12,15 +12,15 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="left">
+        <a href="{{ route('dashboard') }}" class="left">
             <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
-        </div>
+        </a>
         <div class="right">
             <ul>
                 <div class="rightLeft">
-                    <li><a href="">Film</a></li>
+                    <li><a href="{{ route('showFilmView') }}">Film</a></li>
                     @can('isAdmin')
-                        <li><a href="">Genre</a></li>
+                        <li><a href="{{ route('showGenreView') }}">Genre</a></li>
                     @endcan
                 </div>
             </ul>

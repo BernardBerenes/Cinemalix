@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Films</title>
-    <link rel="stylesheet" href="">
+    <title>View Film All</title>
+    <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Style/Film/View_Film_All.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -17,152 +17,68 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="left">
-            <img src="{{ asset('img/Logo.png') }}" alt="Logo">
-        </div>
+    <nav class="navbar">
+        <a href="{{ route('dashboard') }}" class="left">
+            <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
+        </a>
         <div class="right">
-            <a href="">
-                <div id="registerButton">Film</div>
-            </a>
-            <a href="#">
-                <div id="loginButton">User</div>
-            </a>
+            <ul>
+                <div class="rightLeft">
+                    <li><a href="{{ route('showFilmView') }}">Film</a></li>
+                    @can('isAdmin')
+                        <li><a href="{{ route('showGenreView') }}">Genre</a></li>
+                    @endcan
+                </div>
+            </ul>
+            <ul>
+                <form method="POST" action="{{ route('logout') }}" class="rightRight">
+                    @csrf
+                    @can('isAdmin')
+                        <li>
+                            <a href="#">Admin ↓</a>
+                            <ul class="dropdown">
+                                <li><button type="submit">Log Out</button></li>
+                            </ul>
+                        </li>
+                    @else
+                        @auth
+                            <li>
+                                <a href="#">User ↓</a>
+                                <ul class="dropdown">
+                                    <li><button type="submit">Log Out</button></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('loginView') }}">Login</a>
+                            </li>
+                        @endauth
+                    @endcan
+                </form>
+            </ul>
         </div>
-    </div>
-
+    </nav>
     <main>
         <div class="container">
-            <div class="filter-box">
-                <div class="dropdown">
-                    <button onclick="dropdown()" class="dropdown-button">Filter</button>
-                    <div id="dropdown" class="dropdown-content">
-                        <h4>Genre</h4>
-                        <a href="#">Action</a>
-                        <a href="#">Adventure</a>
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                        <a href="#">Horror</a>
-                        <a href="#">Romance</a>
-                        <a href="#">Thriller</a>
-                    </div>
-                </div>
-
-            </div>
-
             <div class="barrier">
-                <div class="barrier-box-left">
-                    <h1>Action</h1>
-                </div>
-                <hr />
-                <div class="barrier-box-right">
-                    <p>54</p>
-                </div>
+                <hr/>
             </div>
 
             <div class="card-container">
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
+                @foreach ($film as $films)
+                    <a href="{{ route('detailFilmView', ['id'=>$films->id]) }}" class="cards">
+                        <div class="movie-card view-film">
+                            <div class="movie-header">
+                                <img src="{{ asset('./storage/Poster/'.$films->FilmPoster) }}" />
+                            </div>
+                            <div class="movie-content">
+                                <h3>{{ $films->FilmAgeRestriction}}</h3>
+                                <h3><i class="bi bi-star-fill"></i>{{ $films->FilmRating}}</h3>
+                            </div>
                         </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 1 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 2 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 3 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 4 --}}
-
-            </div> {{-- Card Container --}}
-
-            <div class="barrier"></div>
-
-            <div class="card-container">
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 1 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 2 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div> {{-- Card 3 --}}
-
-                <div class="cards">
-                    <div class="movie-card view-film">
-                        <div class="movie-header">
-                            <img src="{{ asset('./storage/Poster/Poster.png') }}" />
-                        </div>
-                        <div class="movie-content">
-                            <h3>R 17+</h3>
-                            <h3><i class="bi bi-star-fill"></i> 9.6</h3>
-                        </div>
-                    </div>
-                </div>
+                    </a>
+                @endforeach
             </div>
-            <div class="barrier"></div>
         </div>
     </main>
 </body>

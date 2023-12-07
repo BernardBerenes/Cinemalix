@@ -26,11 +26,7 @@ Route::get('/support', function() {
     return view('Additional.Contact_Support');
 })->name('contactSupport');
 
-Route::get('/cek', function() {
-    return view('Film.View_Film');
-});
-
-Route::get('/view-film', [FilmController::class, 'showFilmView'])->name('showFilmView');
+Route::get('/view-film-all', [FilmController::class, 'showFilmView'])->name('showFilmView');
 Route::get('/detail-film/{id}', [FilmController::class, 'detailFilmView'])->name('detailFilmView');
 
 Route::middleware('admin')->group(function() {
@@ -47,8 +43,6 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::get('/reenter-code', [AuthController::class, 'reenterCodeView'])->name('reenterCodeView');
     Route::post('/reenter-code', [AuthController::class, 'reenterCode'])->name('reenterCode');
 
-    Route::get('/new-password/{id}', [AuthController::class, 'newPasswordView'])->name('newPasswordView');
-    Route::patch('/new-password/{id}', [AuthController::class, 'newPassword'])->name('newPassword');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -61,4 +55,7 @@ Route::middleware('guest')->group(function() {
 
     Route::get('/forgot-password', [AuthController::class, 'forgotPasswordView'])->name('forgotPasswordView');
     Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+
+    Route::get('/new-password/{id}', [AuthController::class, 'newPasswordView'])->name('newPasswordView');
+    Route::patch('/new-password/{id}', [AuthController::class, 'newPassword'])->name('newPassword');
 });

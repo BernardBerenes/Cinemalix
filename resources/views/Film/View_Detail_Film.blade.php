@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Movie</title>
+    <title>{{ $film->FilmName }}</title>
     <link rel="stylesheet" href="{{ asset('Style/Film/View_Detail_Film.css') }}">
+    <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
@@ -13,19 +14,47 @@
     rel="stylesheet">
 </head>
 <body>
-    <div class="navbar">
-        <div class="left">
+    <nav class="navbar">
+        <a href="{{ route('dashboard') }}" class="left">
             <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
-        </div>
+        </a>
         <div class="right">
-            <a href="">
-                <div id="registerButton">Film</div>
-            </a>
-            <a href="#">
-                <div id="loginButton">User</div>
-            </a>
+            <ul>
+                <div class="rightLeft">
+                    <li><a href="{{ route('showFilmView') }}">Film</a></li>
+                    @can('isAdmin')
+                        <li><a href="{{ route('showGenreView') }}">Genre</a></li>
+                    @endcan
+                </div>
+            </ul>
+            <ul>
+                <form method="POST" action="{{ route('logout') }}" class="rightRight">
+                    @csrf
+                    @can('isAdmin')
+                        <li>
+                            <a href="#">Admin ↓</a>
+                            <ul class="dropdown">
+                                <li><button type="submit">Log Out</button></li>
+                            </ul>
+                        </li>
+                    @else
+                        @auth
+                            <li>
+                                <a href="#">User ↓</a>
+                                <ul class="dropdown">
+                                    <li><button type="submit">Log Out</button></li>
+                                </ul>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('loginView') }}">Login</a>
+                            </li>
+                        @endauth
+                    @endcan
+                </form>
+            </ul>
         </div>
-    </div>
+    </nav>
     <main>
         <div class="container">
 
@@ -71,9 +100,7 @@
                             <h3>Synopsis</h3>
                             <p>{{ $film->FilmSynopsis }}</p>
 
-                            <a href="#" class="order">
-                                <p>Order Now</p>
-                            </a>
+                            <a href="#" class="order">Order Now</a>
                         </div>
                     </div>
                 </div>

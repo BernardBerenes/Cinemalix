@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create New Genre</title>
+    <title>View Genre</title>
     <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Style/Genre/View_Genre.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
@@ -13,13 +13,16 @@
 </head>
 <body>
     <nav class="navbar">
-        <div class="left">
+        <a href="{{ route('dashboard') }}" class="left">
             <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
-        </div>
+        </a>
         <div class="right">
             <ul>
                 <div class="rightLeft">
-                    <li><a href="">Film</a></li>
+                    <li><a href="{{ route('showFilmView') }}">Film</a></li>
+                    @can('isAdmin')
+                        <li><a href="{{ route('showGenreView') }}">Genre</a></li>
+                    @endcan
                 </div>
             </ul>
             <ul>

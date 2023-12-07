@@ -11,7 +11,7 @@ class FilmController extends Controller
     public function showFilmView() {
         $films = Film::all();
 
-        return view('Film.View_Film_All');
+        return view('Film.View_Film_All')->with('film', $films);
     }
 
     public function createFilmView() {

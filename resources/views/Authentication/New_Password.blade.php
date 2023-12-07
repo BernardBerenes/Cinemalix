@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cinemalix Forgot Password</title>
+    <title>Cinemalix New Password</title>
     <link rel="stylesheet" href="{{ asset('Style/Navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('Style/Authentication/Login.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
@@ -12,20 +12,25 @@
     <script src="{{ asset('script.js') }}"></script>
 </head>
 <body>
-    <div class="navbar">
-        <div class="left">
-            <img src="images/Logo.png" alt="Logo">
-        </div>
+    <nav class="navbar">
+        <a href="{{ route('dashboard') }}" class="left">
+            <img src="{{ asset('Asset/Logo.png') }}" alt="Logo">
+        </a>
         <div class="right">
-            <a href="Cinemalix_Register.html">
-                <div id="registerButton">Register</div>
-            </a>
-            <a href="Cinemalix_Login.html">
-                <div id="loginButton">Login</div>
-            </a>
+            <ul>
+                <div class="rightLeft">
+                    <li><a href="{{ route('showFilmView') }}">Film</a></li>
+                </div>
+            </ul>
+            <ul>
+                <div class="rightRight">
+                    <li>
+                        <a href="{{ route('loginView') }}">Login</a>
+                    </li>
+                </div>
+            </ul>
         </div>
-    </div>
-
+    </nav>
     <main>
         <div class="container">
             <div class="top">
